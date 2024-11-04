@@ -4,9 +4,10 @@ const Content = () => {
     const change = () =>{
         const greetings = ["Hey", "Hi", "Hello", "Welcome"];
         const n = Math.floor(Math.random()*4);
-        return greetings[n];
+        setValue(val => greetings[n]); 
      }
      const [count, setCount] = useState(0);
+     const [value, setValue] = useState(() => change)
      const increment = () => {
       setCount(inc => inc+1);
      }
@@ -15,6 +16,9 @@ const Content = () => {
      }
   return (
     <>
+    <p>{value} Siva</p>
+    <button onClick={change}>Click to change</button>
+    <br />
     <button onClick={increment}>+</button>
     <p>
       {count}
