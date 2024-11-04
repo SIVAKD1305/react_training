@@ -7,7 +7,7 @@ const Content = () => {
         setValue(val => greetings[n]); 
      }
      const [count, setCount] = useState(0);
-     const [value, setValue] = useState(() => change)
+     const [value, setValue] = useState("Hy")
      const increment = () => {
       setCount(inc => inc+1);
      }
