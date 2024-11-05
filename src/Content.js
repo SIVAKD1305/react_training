@@ -30,22 +30,27 @@ const Content = () => {
     }
   return (
     <>
+    {items.length ? (
       <ul>
-        {items.map(
-          (item) => (
-            <li>
-              <input type="checkbox" checked={item.checked} 
-              key={item.id} onChange={()=>handelChange(item.id)}
-              />
-              <label style={
-                item.checked ? {textDecoration:"line-through"} : null
-                }>{item.todo}</label>
-              <button key={item.id} 
-              onClick={()=>handleDelete(item.id)}>Delete</button>
-            </li>
-          )
-        )}
-      </ul>
+      {items.map(
+        (item) => (
+          <li>
+            <input type="checkbox" checked={item.checked} 
+            key={item.id} onChange={()=>handelChange(item.id)}
+            />
+            <label 
+            style={
+              item.checked ? {textDecoration:"line-through"} : null
+              }
+              >{item.todo}</label>
+            <button key={item.id} 
+            onClick={()=>handleDelete(item.id)}>Delete</button>
+          </li>
+        )
+      )}
+    </ul>
+    ) : <p>Your List is Empty</p>}
+      
     </>
   )
 }
