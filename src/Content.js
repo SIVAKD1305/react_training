@@ -1,29 +1,51 @@
 import React from 'react'
 import { useState } from 'react';
 const Content = () => {
-    const change = () =>{
-        const greetings = ["Hey", "Hi", "Hello", "Welcome"];
-        const n = Math.floor(Math.random()*4);
-        setValue(val => greetings[n]); 
-     }
-     const [count, setCount] = useState(0);
-     const [value, setValue] = useState("Hy")
-     const increment = () => {
-      setCount(inc => inc+1);
-     }
-     const decrement = () => {
-      setCount(dec => dec-1);
-     }
+    const [items, setItems] = useState([
+      {
+        id:1,
+        todo:"Todo1",
+        checked:true
+      },
+      {
+        id:2,
+        todo:"Todo2",
+        checked:false
+      },
+      {
+        id:3,
+        todo:"Todo3",
+        checked:false
+      }
+    ]);
+    const handelChange = (id) => {
+      const listItems = items.map((item) => 
+        id === item.id ? {...item, checked:!item.checked} : item )
+      setItems(listItems)
+      console.log(listItems, id)
+    };
+    const handleDelete = (id) => {
+      const listItems = items.filter((item) => id !== item.id)
+      setItems(listItems)
+    }
   return (
     <>
-    <p>{value} Siva</p>
-    <button onClick={change}>Click to change</button>
-    <br />
-    <button onClick={increment}>+</button>
-    <p>
-      {count}
-    </p>
-    <button onClick={decrement}>-</button>
+      <ul>
+        {items.map(
+          (item) => (
+            <li>
+              <input type="checkbox" checked={item.checked} 
+              key={item.id} onChange={()=>handelChange(item.id)}
+              />
+              <label style={
+                item.checked ? {textDecoration:"line-through"} : null
+                }>{item.todo}</label>
+              <button key={item.id} 
+              onClick={()=>handleDelete(item.id)}>Delete</button>
+            </li>
+          )
+        )}
+      </ul>
     </>
   )
 }
