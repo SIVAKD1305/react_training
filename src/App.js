@@ -20,6 +20,7 @@ export default function App(){
       checked:false
     }
   ]);
+  const [newItem, setNewItem] = useState('');
   const handelChange = (id) => {
     const listItems = items.map((item) => 
       id === item.id ? {...item, checked:!item.checked} : item )
@@ -29,6 +30,19 @@ export default function App(){
     const listItems = items.filter((item) => id !== item.id)
     setItems(listItems)
   };
+  const addItem = (item) => {
+    const id = items.length ? items[items.length-1].id+1 : 1;
+    const addNewItem = {id,  item, checked:false}
+    const newList = [...items, addNewItem];
+    console.log(item);
+    console.log(newList)
+    setItems(newList)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(!newItem) return;
+    addItem(newItem)
+  }
   return(
     <div className="App">
       <Header  />
@@ -36,6 +50,9 @@ export default function App(){
       items = {items}
       handelChange = {handelChange}
       handleDelete = {handleDelete}
+      newItem = {newItem}
+      setNewItem = {setNewItem}
+      handleSubmit = {handleSubmit}
       />
       <Footer
       length = {items.length}
