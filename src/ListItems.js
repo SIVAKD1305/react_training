@@ -20,7 +20,6 @@ function ListItems(props) {
           </li>
         ))}
       </ul>
-      <p>{props.handelDelete}</p>
     </div>
   );
 }

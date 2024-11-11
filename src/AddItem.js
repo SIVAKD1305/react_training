@@ -14,7 +14,7 @@ function AddItem(props) {
         (e) => {props.setNewItem(e.target.value)}
         }/>
         <button type='submit'
-        > + </button>
+        > Add </button>
         </form>
     </div>
   )
